@@ -1,0 +1,14 @@
+.form {
+    border: 1px solid red;
+    width: 250px;
+    padding: 8px;
+    border-radius: 4px;
+    
+}
+.form h3 {
+    margin: 0;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+

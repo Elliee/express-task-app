@@ -1,0 +1,16 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(220, 220, 220);
+  margin-bottom: 32px;
+  padding: 0 16px 0 16px
+}
+
+.navBar button {
+  background-color: rgb(13, 118, 255);
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  color: white;
+}

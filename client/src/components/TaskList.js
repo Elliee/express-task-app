@@ -21,13 +21,11 @@ const TasksList = () => {
   }, [])
 
 
-console.log(tasks)
-
   return (
    <div className={styles.taskContainer}>
-    {tasks && tasks.map((task) => {
+    {tasks && tasks.map((task, index) => {
       return (
-        <div className={styles.taskCard}>
+        <div key={index} className={styles.taskCard}>
           <h4>{task.name}</h4>
           <p>Status: { task.status ? 'done' : 'not done' }</p>
           <button>Update Task</button>
