@@ -4,15 +4,17 @@ require('dotenv').config();
 const connectDB = require('./DB/connect')
 const mongoose = require('mongoose');
 
+const cors = require('cors');
+
 //routes
 const tasksRouter = require('./routes/tasks');
 
 const PORT = 3000
 
 //middleware
-app.use(express.json())
-
-app.use('/api/v1/tasks', tasksRouter)
+app.use(express.json());
+app.use(cors());
+app.use('/api/v1/tasks', tasksRouter);
 
 // mongoose.connect(process.env.MONGO_URI)
 
