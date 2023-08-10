@@ -6,14 +6,3 @@
     justify-content: space-between;
 }
 
-.taskCard {
-    border: 1px solid black;
-    padding: 9px;
-    border-radius: 4px;
-    margin-bottom: 8px;
-    height: 180px;
-}
-
-.taskCard h4 {
-    margin: 0;
-}
