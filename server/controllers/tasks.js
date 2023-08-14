@@ -1,14 +1,22 @@
-const { db } = require('../models/Task')
-const Task = require('../models/Task')
+const Task = require('../models/Task');
+const { StatusCodes } = require('http-status-codes');
+const { BadRequestError, NotFoundError } = require('../errors')
 
 const getAllTasks = async (req,res) => {
     const tasks = await Task.find({})
-    res.status(200).json({tasks})
+    res.status(StatusCodes.OK).json({tasks})
 }
 
 const createTask = async (req, res) => {
+
+    const {
+        body: {name, completed}
+    } = req;
+     if(name === ""){
+        throw new BadRequestError(`Task name field cannot be blank`)
+     }
     const task = await Task.create(req.body)
-    res.status(200).json({ task })
+    res.status(StatusCodes.CREATED).json({ task })
 }
 
 const getTask = async (req,res) => {
@@ -18,7 +26,11 @@ const getTask = async (req,res) => {
         _id:taskId
     })
 
-    res.status(200).json({task})
+    if(!task){
+       throw new NotFoundError(`No task with id: ${taskId} found`)
+    }
+
+    res.status(StatusCodes.OK).json({task})
 }
 
 const updateTask = async (req,res) => {
@@ -27,13 +39,21 @@ const updateTask = async (req,res) => {
         body: {name, completed},
         params: {id: taskId},
     } = req
+
+    if(name === ''){
+        throw new BadRequestError('Task name field cannot be blank')
+    }
     
     const task = await Task.findOneAndUpdate({ _id: taskId}, req.body, {
         new:true,
         runValidators:true,
     })
 
-    res.status(200).json({ task })
+    if (!task){
+        throw new NotFoundError(`Task with id: ${taskId} not found`)
+    }
+
+    res.status(StatusCodes.OK).json({ task })
 }
 
 const deleteTask = async (req,res) => {
@@ -47,9 +67,9 @@ const deleteTask = async (req,res) => {
     })
 
     if(!task){
-        throw new Error(`No job with id: ${jobId} found!`)
+        throw new NotFoundError(`Task with id: ${taskId} not found`)
     }
-    res.status(200).send()
+    res.status(StatusCodes.OK).send()
 }
 
 module.exports = {
