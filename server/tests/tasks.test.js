@@ -23,9 +23,9 @@ describe("GET /api/v1/tasks", () => {
 
   describe("GET /api/v1/tasks/:id", () => {
     it("should return a single tasks", async () => {
-      const res = await request(app).get("/api/v1/tasks/64d1bf8749a21ffe021a470c");
+      const res = await request(app).get("/api/v1/tasks/64d96d14a8f0cf26ba89f067");
       expect(res.statusCode).toBe(200);
-      expect(res.body.task.name).toBe('Wash car')
+      expect(res.body.task.name).toBe('Clean car')
     });
   });
 
@@ -42,18 +42,18 @@ describe("GET /api/v1/tasks", () => {
 
   describe("PATCH /api/v1/:id", () => {
     it("should update an existing task", async () => {
-        const res = await request(app).patch("/api/v1/tasks/64d2dbd3c8aa2d1e4d4b603e").send({
+        const res = await request(app).patch("/api/v1/tasks/64d96d14a8f0cf26ba89f067").send({
             name: "Clean car",
-            completed: false,
+            completed: true,
           });
         expect(res.statusCode).toBe(200)
-        expect(res.body.task.name).toBe('Clean car')
+        expect(res.body.task.completed).toBe(true)
     })
   })
 
   describe("DELETE /api/v1/:id", () => {
     it("should update an existing task", async () => {
-        const res = await request(app).delete("/api/v1/tasks/64d2eafd29372cd2ed38dadf");
+        const res = await request(app).delete("/api/v1/tasks/64d990b6a8f0cf26ba89f1f2");
         expect(res.statusCode).toBe(200)
     })
   })

@@ -1,0 +1,30 @@
+.formContainer {
+    display: flex;
+    justify-content: center;
+
+}
+
+.updateForm {  
+    border-radius: 4px;
+    width: 500px;
+    padding: 24px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.updateForm h3 {
+    text-align: center;
+    padding-bottom: 8px;
+}
+
+.updateForm label {
+    padding-right: 10px;
+}
+
+.updateForm button {
+    background-color: rgb(20, 107, 246);
+    border-radius: 4px;
+    border: none;
+    padding: 4px;
+    width: 100px;
+    color: white;
+}
