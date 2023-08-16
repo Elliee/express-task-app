@@ -23,9 +23,9 @@ describe("GET /api/v1/tasks", () => {
 
   describe("GET /api/v1/tasks/:id", () => {
     it("should return a single tasks", async () => {
-      const res = await request(app).get("/api/v1/tasks/64d96d14a8f0cf26ba89f067");
+      const res = await request(app).get("/api/v1/tasks/64dc4a7cb56c294a61a5c4b9");
       expect(res.statusCode).toBe(200);
-      expect(res.body.task.name).toBe('Clean car')
+      expect(res.body.task.name).toBe('learn docker')
     });
   });
 
@@ -35,15 +35,15 @@ describe("GET /api/v1/tasks", () => {
             name: "Iron clothes",
             completed: false,
           });
-        expect(res.statusCode).toBe(200)
+        expect(res.statusCode).toBe(201)
         expect(res.body.task.name).toBe('Iron clothes')
     })
   })
 
-  describe("PATCH /api/v1/:id", () => {
+  describe("PATCH /api/v1/tasks/:id", () => {
     it("should update an existing task", async () => {
         const res = await request(app).patch("/api/v1/tasks/64d96d14a8f0cf26ba89f067").send({
-            name: "Clean car",
+            name: "Wash car",
             completed: true,
           });
         expect(res.statusCode).toBe(200)
@@ -51,9 +51,9 @@ describe("GET /api/v1/tasks", () => {
     })
   })
 
-  describe("DELETE /api/v1/:id", () => {
-    it("should update an existing task", async () => {
-        const res = await request(app).delete("/api/v1/tasks/64d990b6a8f0cf26ba89f1f2");
+  describe("DELETE /api/v1/tasks/:id", () => {
+    it("should delete a single task", async () => {
+        const res = await request(app).delete("/api/v1/tasks/64d971b7a8f0cf26ba89f079");
         expect(res.statusCode).toBe(200)
     })
   })
